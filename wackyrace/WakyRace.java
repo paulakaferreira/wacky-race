@@ -10,5 +10,9 @@ public class WakyRace {
         // Prompt the user to enter the team's name and number
         System.out.println("Enter the team's name:");
         String teamName = scanner.nextLine();
+        // To do: make teamNumber random
+        int teamNumber = 0;
+        // Create a new team
+        Team team = new Team(teamName, teamNumber);
     }
 }

@@ -14,18 +14,25 @@ public class Coureur {
     }
 
     public String getNom() {
-        return nom;
+        return this.nom;
     }
 
     public int getAge() {
-        return age;
+        return this.age;
     }
 
     public String getEspece() {
-        return espece;
+        return this.espece;
     }
 
     public String getQualificatif() {
-        return qualificatif;
+        return this.qualificatif;
+    }
+
+    public void afficherDetails() {
+        System.out.println("Coureur " + this.nom);
+        System.out.println("Age: " + this.age);
+        System.out.println("Espèce: " + this.espece);
+        System.out.println("Qualificatif: " + this.qualificatif);
     }
 }

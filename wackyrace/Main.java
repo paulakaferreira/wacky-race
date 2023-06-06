@@ -27,6 +27,14 @@ public class Main {
         voiture.avancer();
         System.out.println("Distance parcourue par la voiture: " + voiture.getDistance() + " km");
         voiture.arreter();
+
+        Circuit circuit = new Circuit("Circuit A", "Paris", "Berlin", "France", 1000);
+
+        System.out.println("Circuit Name: " + circuit.getNom());
+        System.out.println("Departure City: " + circuit.getVilleDepart());
+        System.out.println("Arrival City: " + circuit.getVilleArrivee());
+        System.out.println("Country: " + circuit.getPays());
+        System.out.println("Distance: " + circuit.getDistance() + " km");
     }
 }
 

@@ -35,6 +35,13 @@ public class Main {
         System.out.println("Arrival City: " + circuit.getVilleArrivee());
         System.out.println("Country: " + circuit.getPays());
         System.out.println("Distance: " + circuit.getDistance() + " km");
+
+        Coureur coureur = new Coureur("John Doe", 25, "Humain", "beau gosse");
+
+        System.out.println("Nom: " + coureur.getNom());
+        System.out.println("Age: " + coureur.getAge());
+        System.out.println("Espèce: " + coureur.getEspece());
+        System.out.println("Qualificatif: " + coureur.getQualificatif());
     }
 }
 

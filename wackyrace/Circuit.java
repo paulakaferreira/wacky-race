@@ -35,10 +35,6 @@ public class Circuit {
         return this.distance;
     }
 
-    public void setDistance(int distance) { // a voir si j'en ai besoin
-        this.distance = distance;
-    }
-
     public void afficherDetails() {
         System.out.println("Le circuit: " + nom);
         System.out.println("Ville de départ: " + villeDepart);

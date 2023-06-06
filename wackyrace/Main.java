@@ -42,6 +42,18 @@ public class Main {
         System.out.println("Age: " + coureur.getAge());
         System.out.println("Espèce: " + coureur.getEspece());
         System.out.println("Qualificatif: " + coureur.getQualificatif());
+
+        Coureur coureur1 = new Coureur("Alice", 25, "Humain", "Beau gosse");
+        Coureur coureur2 = new Coureur("Bob", 28, "Mort vivant", "Sournois");
+
+        Vehicule vehicule = new Voiture("Huydai HB20");
+
+        Coureur[] coureurs = {coureur1, coureur2};
+        Equipe equipe = new Equipe("AliceBob", 1, coureurs, vehicule);
+
+        equipe.demarrer();
+        equipe.avancer();
+        equipe.arreter();
     }
 }
 

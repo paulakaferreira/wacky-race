@@ -124,7 +124,7 @@ class Voiture extends Vehicule {
 
     @Override
     public void arreter() {
-        System.out.println("Frein à main activé. Arrêt de la voiture " + super.getNom());
+        System.out.println("Frein à main activé ! Arrêt de la voiture " + super.getNom());
     }
 
     public int getNombreRoues() {

@@ -22,6 +22,7 @@ public class Course {
 
     public void demarrer() {
         System.out.println("La course démarre !");
+        System.out.println("---------------------------");
         competition();
     }
 
@@ -43,6 +44,13 @@ public class Course {
 
     public void competition() {
         latch = new CountDownLatch(equipes.size());
+
+        System.out.println("Équipes :");
+        for (Equipe equipe : equipes) {
+            System.out.println(equipe.getNom());
+        }
+        System.out.println("---------------------------");
+
 
         for (Equipe equipe : equipes) {
             equipe.setLatch(latch);

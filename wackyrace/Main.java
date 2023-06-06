@@ -11,7 +11,7 @@ public class Main {
         Vehicule vehicule3 = new Bateau("Queen Mary 2");
 
         // Création du circuit
-        Circuit circuit = new Circuit("Circuit Sud", "Paris - Gare de Lyon", "Nice", "France", 50);
+        Circuit circuit = new Circuit("Circuit Sud", "Paris - Gare de Lyon", "Nice", "France", 500);
 
         // Creéation première équipe
         Coureur coureur1 = new Coureur("Alice", 25, "Humain", "Beau gosse");

@@ -2,6 +2,7 @@ package wackyrace;
 
 import java.util.Date;
 import java.util.concurrent.CountDownLatch;
+import java.util.Random;
 
 public class Equipe extends Thread {
     private String nom;
@@ -35,6 +36,9 @@ public class Equipe extends Thread {
                 e.printStackTrace();
             }
             avancer();
+            if (this.distanceParcourue >= circuit.getDistance()){
+                mauvais_coup();
+            }
         }
         arreter();
         this.heureArrivee = new Date();
@@ -46,23 +50,35 @@ public class Equipe extends Thread {
         for (Coureur coureur : coureurs) {
             System.out.println("Le coureur " + coureur.getNom() + " monte dans le véhicule.");
         }
-        System.out.println("Les équipiers de l'équipe " + this.nom + " (#" + this.numero + ") démarrent le véhicule.");
+        System.out.println("Les équipiers de l'équipe " + this.nom + " (#" + this.numero + ") démarrent le véhicule: " +  vehicule.getNom());
         demarrerEquipeThread.start();
         vehicule.demarrer();
     }
 
     public void avancer() {
-        System.out.println("L'équipe " + this.nom + " (#" + this.numero + ") avance dans son véhicule.");
+        System.out.println("L'équipe " + this.nom + " (#" + this.numero + ") avance dans son véhicule " + vehicule.getNom() + ".");
         vehicule.avancer();
         this.distanceParcourue += vehicule.getDistance();
-        System.out.println("Le véhicule a avancé " + this.distanceParcourue + "km");
+        System.out.println(vehicule.getNom() + " est à " + this.distanceParcourue + "km");
     }
 
     public void arreter() {
-        System.out.println("L'équipe " + this.nom + " (#" + this.numero + ") arrête le véhicule.");
+        System.out.println("L'équipe " + this.nom + " (#" + this.numero + ") arrête le véhicule " +  vehicule.getNom());
         vehicule.arreter();
         for (Coureur coureur : coureurs) {
             System.out.println("Le coureur " + coureur.getNom() + " descend du véhicule.");
+        }
+    }
+
+    public void mauvais_coup() {
+        Random random = new Random();
+        int randomDistance = random.nextInt(10) + 1;
+        int randomEquipe = random.nextInt(2);
+
+        if (randomEquipe < coureurs.length) {
+            System.out.println("L'équipe " + this.nom + " (#" + this.numero + ") a subi un mauvais coup et recule de " + randomDistance + "km.");
+            this.distanceParcourue -= randomDistance;
+            System.out.println(vehicule.getNom() + " a reculé " + randomDistance + "km");
         }
     }
 

@@ -112,7 +112,7 @@ class Voiture extends Vehicule {
 
     @Override
     public void demarrer() {
-        System.out.println("Clef de contact inserée. Démarrage de la voiture " + super.getNom());
+        System.out.println("Clef de contact inserée. La voiture " + super.getNom() + " démarre");
         super.distance = 0;
     }
 

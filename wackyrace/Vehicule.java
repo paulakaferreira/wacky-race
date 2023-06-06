@@ -1,10 +1,14 @@
 package wackyrace;
 
+import java.util.Random;
+
 abstract class Vehicule {
     private String nom;
+    protected int distance;
 
     public Vehicule(String nom) {
         this.nom = nom;
+        this.distance = 0;
     }
 
     public abstract void demarrer();
@@ -12,7 +16,20 @@ abstract class Vehicule {
     public abstract void arreter();
 
     public String getNom() {
-        return nom;
+        return this.nom;
+    }
+
+    public int getDistance() {
+        return this.distance;
+    }
+
+    public void incrementerDistance(int increment) {
+        this.distance += increment;
+    }
+
+    public int genererDistanceAleatoire() {
+        Random aleatoire = new Random();
+        return aleatoire.nextInt(10) + 1;
     }
 }
 
@@ -28,11 +45,13 @@ class Avion extends Vehicule {
     @Override
     public void demarrer() {
         System.out.println("L'avion " + super.getNom() + " décolle");
+        super.distance = 0;
     }
 
     @Override
     public void avancer() {
         System.out.println("L'avion " + super.getNom() + " vole");
+        super.incrementerDistance(super.genererDistanceAleatoire());
     }
 
     @Override
@@ -60,11 +79,13 @@ class Bateau extends Vehicule {
     @Override
     public void demarrer() {
         System.out.println("Le bateau " + super.getNom() + " allume son moteur et hisse ses voiles");
+        super.distance = 0;
     }
 
     @Override
     public void avancer() {
         System.out.println("Le bateau " + super.getNom() + " navigue en zigzagant le vent");
+        super.incrementerDistance(super.genererDistanceAleatoire());
     }
 
     @Override
@@ -92,11 +113,13 @@ class Voiture extends Vehicule {
     @Override
     public void demarrer() {
         System.out.println("Clef de contact inserée. Démarrage de la voiture " + super.getNom());
+        super.distance = 0;
     }
 
     @Override
     public void avancer() {
         System.out.println("La voiture " + super.getNom() + " roule sur la route");
+        super.incrementerDistance(super.genererDistanceAleatoire());
     }
 
     @Override

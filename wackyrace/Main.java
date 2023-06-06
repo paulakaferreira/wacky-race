@@ -1,66 +1,47 @@
 package wackyrace;
 
+import java.util.ArrayList;
+import java.util.Date;
+
 public class Main {
     public static void main(String[] args) {
-        Avion avion = new Avion("Airbus A380");
-        Bateau bateau = new Bateau("Queen Mary 2");
-        Voiture voiture = new Voiture("Tesla Model S");
+        // Véhicules disponibles
+        Vehicule vehicule1 = new Voiture("Huyndai HB20");
+        Vehicule vehicule2 = new Avion("Airbus 360");
+        Vehicule vehicule3 = new Bateau("Queen Mary 2");
 
-        avion.demarrer();
-        System.out.println("Distance parcourue par l'avion: " + avion.getDistance() + " km");
-        avion.avancer();
-        System.out.println("Distance parcourue par l'avion: " + avion.getDistance() + " km");
-        avion.arreter();
+        // Création du circuit
+        Circuit circuit = new Circuit("Circuit Sud", "Paris - Gare de Lyon", "Nice", "France", 50);
 
-        System.out.println();
-
-        bateau.demarrer();
-        System.out.println("Distance parcourue par le bateau: " + bateau.getDistance() + " km");
-        bateau.avancer();
-        System.out.println("Distance parcourue par le bateau: " + bateau.getDistance() + " km");
-        bateau.arreter();
-
-        System.out.println();
-
-        voiture.demarrer();
-        System.out.println("Distance parcourue par la voiture: " + voiture.getDistance() + " km");
-        voiture.avancer();
-        System.out.println("Distance parcourue par la voiture: " + voiture.getDistance() + " km");
-        voiture.arreter();
-
-        Circuit circuit = new Circuit("Circuit A", "Paris", "Berlin", "France", 50);
-
-        System.out.println("Circuit Name: " + circuit.getNom());
-        System.out.println("Departure City: " + circuit.getVilleDepart());
-        System.out.println("Arrival City: " + circuit.getVilleArrivee());
-        System.out.println("Country: " + circuit.getPays());
-        System.out.println("Distance: " + circuit.getDistance() + " km");
-
-        // Coureur coureur = new Coureur("John Doe", 25, "Humain", "beau gosse");
-
-        //System.out.println("Nom: " + coureur.getNom());
-        //System.out.println("Age: " + coureur.getAge());
-        //System.out.println("Espèce: " + coureur.getEspece());
-        //System.out.println("Qualificatif: " + coureur.getQualificatif());
-
+        // Creéation première équipe
         Coureur coureur1 = new Coureur("Alice", 25, "Humain", "Beau gosse");
         Coureur coureur2 = new Coureur("Bob", 28, "Mort vivant", "Sournois");
+        Coureur[] coureurs12 = {coureur1, coureur2};
+        Equipe equipe1 = new Equipe("AliceBob", 1, coureurs12, vehicule1, circuit);
 
-        Vehicule vehicule = new Voiture("Huyndai HB20");
+        // Création deuxième équipe
+        Coureur coureur3 = new Coureur("Jon Doe", 35, "Humain", "Bûcheron");
+        Coureur[] coureurs3 = {coureur3};
+        Equipe equipe2 = new Equipe("JonSolo", 2, coureurs3, vehicule2, circuit);
 
-        Coureur[] coureurs = {coureur1, coureur2};
-        Equipe equipe = new Equipe("AliceBob", 1, coureurs, vehicule, circuit);
+        // Création troisième équipe
+        Coureur coureur4 = new Coureur("Teddy", 2, "Chien", "Diabolique");
+        Coureur coureur5 = new Coureur("Picker", 2, "Chien", "Diabolique");
+        Coureur[] coureurs45 = {coureur4, coureur5};
+        Equipe equipe3 = new Equipe("Teddy Picker", 3, coureurs45, vehicule3, circuit);
 
-        equipe.demarrer();
+        // Liste les équipes
+        ArrayList<Equipe> equipes = new ArrayList<>();
+        equipes.add(equipe1);
+        equipes.add(equipe2);
+        equipes.add(equipe3);
 
-        try {
-            equipe.join();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        // Création de la course
+        Date dateCourse = new Date();
+        Course course = new Course(dateCourse, equipes, circuit);
 
-        System.out.println("Distance parcourue: " + equipe.getDistanceParcourue());
-        System.out.println("Heure d'arrivée: " + equipe.getHeureArrivee());
+        // Commence la course
+        course.demarrer();
     }
 }
 

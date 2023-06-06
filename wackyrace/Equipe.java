@@ -1,6 +1,7 @@
 package wackyrace;
 
 import java.util.Date;
+import java.util.concurrent.CountDownLatch;
 
 public class Equipe extends Thread {
     private String nom;
@@ -10,6 +11,7 @@ public class Equipe extends Thread {
     private Circuit circuit;
     private Date heureArrivee;
     private int distanceParcourue;
+    private CountDownLatch latch;
 
     public Equipe(String nom, int numero, Coureur[] coureurs, Vehicule vehicule, Circuit circuit) {
         if (coureurs == null || coureurs.length < 1 || coureurs.length > 2) {
@@ -36,6 +38,7 @@ public class Equipe extends Thread {
         }
         arreter();
         this.heureArrivee = new Date();
+        latch.countDown();
     }
 
     public void demarrer() {
@@ -43,7 +46,7 @@ public class Equipe extends Thread {
         for (Coureur coureur : coureurs) {
             System.out.println("Le coureur " + coureur.getNom() + " monte dans le véhicule.");
         }
-        System.out.println("Les équipiers de l'équipe " + this.nom + " (#" + this.numero + ") montent dans le véhicule et le démarrent.");
+        System.out.println("Les équipiers de l'équipe " + this.nom + " (#" + this.numero + ") démarrent le véhicule.");
         demarrerEquipeThread.start();
         vehicule.demarrer();
     }
@@ -89,5 +92,9 @@ public class Equipe extends Thread {
 
     public Date getHeureArrivee() {
         return heureArrivee;
+    }
+
+    public void setLatch(CountDownLatch latch) {
+        this.latch = latch;
     }
 }

@@ -28,7 +28,7 @@ public class Main {
         System.out.println("Distance parcourue par la voiture: " + voiture.getDistance() + " km");
         voiture.arreter();
 
-        Circuit circuit = new Circuit("Circuit A", "Paris", "Berlin", "France", 1000);
+        Circuit circuit = new Circuit("Circuit A", "Paris", "Berlin", "France", 50);
 
         System.out.println("Circuit Name: " + circuit.getNom());
         System.out.println("Departure City: " + circuit.getVilleDepart());
@@ -36,24 +36,31 @@ public class Main {
         System.out.println("Country: " + circuit.getPays());
         System.out.println("Distance: " + circuit.getDistance() + " km");
 
-        Coureur coureur = new Coureur("John Doe", 25, "Humain", "beau gosse");
+        // Coureur coureur = new Coureur("John Doe", 25, "Humain", "beau gosse");
 
-        System.out.println("Nom: " + coureur.getNom());
-        System.out.println("Age: " + coureur.getAge());
-        System.out.println("Espèce: " + coureur.getEspece());
-        System.out.println("Qualificatif: " + coureur.getQualificatif());
+        //System.out.println("Nom: " + coureur.getNom());
+        //System.out.println("Age: " + coureur.getAge());
+        //System.out.println("Espèce: " + coureur.getEspece());
+        //System.out.println("Qualificatif: " + coureur.getQualificatif());
 
         Coureur coureur1 = new Coureur("Alice", 25, "Humain", "Beau gosse");
         Coureur coureur2 = new Coureur("Bob", 28, "Mort vivant", "Sournois");
 
-        Vehicule vehicule = new Voiture("Huydai HB20");
+        Vehicule vehicule = new Voiture("Huyndai HB20");
 
         Coureur[] coureurs = {coureur1, coureur2};
-        Equipe equipe = new Equipe("AliceBob", 1, coureurs, vehicule);
+        Equipe equipe = new Equipe("AliceBob", 1, coureurs, vehicule, circuit);
 
         equipe.demarrer();
-        equipe.avancer();
-        equipe.arreter();
+
+        try {
+            equipe.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        System.out.println("Distance parcourue: " + equipe.getDistanceParcourue());
+        System.out.println("Heure d'arrivée: " + equipe.getHeureArrivee());
     }
 }
 
